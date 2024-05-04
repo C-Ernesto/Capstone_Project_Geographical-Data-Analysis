@@ -1,5 +1,20 @@
 using PlotlyJS, CSV, HTTP, DataFrames, Statistics
 
+# TODO Quartiles, find outliers
+function summaryStatistics(myVector)
+    mean_elevation = mean(myVector)
+    median_elevation = median(myVector)
+    std_deviation = std(myVector)
+    min_elevation = minimum(myVector)
+    max_elevation = maximum(myVector)
+
+    println("Mean: ", mean_elevation)
+    println("Median: ", median_elevation)
+    println("Standard Deviation: ", std_deviation)
+    println("Minimum Elevation: ", min_elevation)
+    println("Maximum Elevation: ", max_elevation)
+end
+
 # function to make path
 function generate_random_path(A, B; grid_size=(25, 25), weight_factor=0.6)
     x_coords = [A[1]]
@@ -42,9 +57,28 @@ df = CSV.File(
     HTTP.get("https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv").body
 ) |> DataFrame
 
-# convert data to 2D array
+# convert data to 2D array and vector, print summary
 z_data = Matrix{Float64}(df)
 (sh_0, sh_1) = size(z_data)
+z_data_vector = vec(z_data)
+summaryStatistics(z_data_vector)
+
+# Plot Histogram
+z_data_histogram = plot(
+    histogram(
+        x = z_data_vector,
+        nbins = 10,
+        opacity = 0.7,
+        marker_color = "blue",
+        name = "Elevation Histogram"
+    ),
+    Layout(
+        title = "Mt.Bruno Elevation Histogram",
+        xaxis = attr(title = "Elevation"),
+        yaxis = attr(title = "Frequency")
+    )
+)
+display(z_data_histogram)
 
 # make X and Y axis enumerate from 0
 x = range(1, length=sh_0)
