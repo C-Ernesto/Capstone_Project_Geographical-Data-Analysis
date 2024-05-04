@@ -11,15 +11,17 @@ The primary goals of this capstone project are as follows:
 
 ## Key language features used
 Julia is a multi paradigm langaguge with various features, below is a list of a few used for this project:
-1.
-2.
-3.
+1. 
+2. 
+3. 
+4. 
+
 
 ## Usage
 To replicate the analysis and explore the code:
 1. Ensure you have the latest Julia REPL installation - Julia: [Download](https://julialang.org/downloads/)
 2. Clone this repository to your local machine.
-3, Run the Julia program using your preferred environment or IDE
+3. Run the Julia program using your preferred environment or IDE
 
 ## Dependencies
 - PlotlyJS.jl: [Documentation](https://github.com/JuliaPlots/PlotlyJS.jl)
