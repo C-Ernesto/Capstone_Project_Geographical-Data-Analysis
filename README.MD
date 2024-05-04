@@ -10,7 +10,7 @@ The primary goals of this capstone project are as follows:
 - Modularize the script or parameters as needed to maintain flexability for other data sets.
 
 ## Key language features used
-Julia is a multi paradigm langaguge with various features, below is a list of a few used for this project
+Julia is a multi paradigm langaguge with various features, below is a list of a few used for this project:
 1.
 2.
 3.
