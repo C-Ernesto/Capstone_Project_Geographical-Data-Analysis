@@ -15,6 +15,41 @@ function summaryStatistics(myVector)
     println("Maximum Elevation: ", max_elevation)
 end
 
+function create_histogram(z_data_vector)
+    z_data_histogram = plot(
+        histogram(
+            x = z_data_vector,
+            nbins = 10,
+            opacity = 0.7,
+            marker_color = "blue",
+            name = "Elevation Histogram"
+        ),
+        Layout(
+            title = "Mt.Bruno Elevation Histogram",
+            xaxis = attr(title = "Elevation"),
+            yaxis = attr(title = "Frequency")
+        )
+    )
+    display(z_data_histogram)
+end
+
+function create_boxPlot(z_data_vector)
+    z_data_boxplot = plot(
+        box(
+            y=z_data_vector, 
+            boxpoints="all", 
+            quartilemethod="linear", 
+            name="linear"
+        ),
+        Layout(
+            title = "Box Plot",
+            xaxis_title = "Mt.Bruno",
+            yaxis_title = "Elevation"
+        )
+    )
+    display(z_data_boxplot)
+end
+
 # function to make path
 function generate_random_path(A, B; grid_size=(25, 25), weight_factor=0.6)
     x_coords = [A[1]]
@@ -63,22 +98,9 @@ z_data = Matrix{Float64}(df)
 z_data_vector = vec(z_data)
 summaryStatistics(z_data_vector)
 
-# Plot Histogram
-z_data_histogram = plot(
-    histogram(
-        x = z_data_vector,
-        nbins = 10,
-        opacity = 0.7,
-        marker_color = "blue",
-        name = "Elevation Histogram"
-    ),
-    Layout(
-        title = "Mt.Bruno Elevation Histogram",
-        xaxis = attr(title = "Elevation"),
-        yaxis = attr(title = "Frequency")
-    )
-)
-display(z_data_histogram)
+# Histogram, Boxplot
+create_histogram(z_data_vector)
+create_boxPlot(z_data_vector)
 
 # make X and Y axis enumerate from 0
 x = range(1, length=sh_0)
