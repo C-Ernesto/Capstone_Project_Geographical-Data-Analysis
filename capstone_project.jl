@@ -1,18 +1,23 @@
 using PlotlyJS, CSV, HTTP, DataFrames, Statistics
 
-# TODO Quartiles, find outliers
+# TODO Find outliers
 function summaryStatistics(myVector)
     mean_elevation = mean(myVector)
     median_elevation = median(myVector)
     std_deviation = std(myVector)
     min_elevation = minimum(myVector)
     max_elevation = maximum(myVector)
+    q1, q2, q3 = quantile(myVector, [0.25, 0.5, 0.75])
 
+    println("----- Descriptive Analysis -----")
     println("Mean: ", mean_elevation)
     println("Median: ", median_elevation)
     println("Standard Deviation: ", std_deviation)
     println("Minimum Elevation: ", min_elevation)
     println("Maximum Elevation: ", max_elevation)
+    println("Quartile 1: ", q1)
+    println("Quartile 2: ", q2)
+    println("Quartile 3: ", q3)
 end
 
 function create_histogram(z_data_vector)
@@ -131,7 +136,7 @@ layout = Layout(
     scene = attr(xaxis_title="x", yaxis_title="y", zaxis_title="Elevation"),
     autosize=false,
     scene_camera_eye=attr(x=1.87, y=0.88, z=-0.64),
-    width=500, height=500,
+    width=1000, height=1000,
     margin=attr(l=65, r=50, b=65, t=90)
 )
 
@@ -157,16 +162,3 @@ trace2 = scatter(x=x_path, y=y_path, z=z_path,
 
 
 plot([trace1, trace2], layout)
-
-
-#=
-plot(surface(
-    z=z_data,
-    contours_z=attr(
-        show=true,
-        usecolormap=true,
-        highlightcolor="limegreen",
-        project_z=true
-    )
-), layout)
-=#
