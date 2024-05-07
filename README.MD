@@ -5,16 +5,17 @@ This repository contains the code and resources for the capstone project focusin
 
 ## Goals
 The primary goals of this capstone project are as follows:
-- Build geographical plot to visualize a geographical region.
+- Build geographical plots to visualize a geographical region.
 - Conduct statistical analysis on geographical data to uncover trends and correlations.
-- Modularize the script or parameters as needed to maintain flexability for other data sets.
+- Modularize the script or parameters as needed to maintain flexibility for other data sets.
 
 ## Key language features used
-Julia is a multi paradigm langaguge with various features, below is a list of a few used for this project:
-1. 
-2. 
-3. 
-4. 
+Julia is a multi paradigm language with various features, below is a list of a few used for this project:
+1. Multidimensional arrays
+2. Loops (while and for loops)
+3. Parameter passing and return values
+4. Default parameters
+5. Piping
 
 
 ## Usage
