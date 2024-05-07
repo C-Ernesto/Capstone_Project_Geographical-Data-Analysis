@@ -92,6 +92,77 @@ function generate_random_path(A, B; grid_size=(25, 25), weight_factor=0.6)
     return x_coords, y_coords
 end
 
+function button_plot()
+    # create plot
+    p = plot(surface(z=z_data, colorscale="Viridis"))
+
+    # add buttons
+    relayout!(p,
+        updatemenus=[
+            attr(
+                type = "buttons",
+                direction = "left",
+                buttons=[
+                    attr(
+                        args=["type", "surface"],
+                        label="3D Surface",
+                        method="restyle"
+                    ),
+                    attr(
+                        args=["type", "heatmap"],
+                        label="Heatmap",
+                        method="restyle"
+                    )
+                ],
+                pad=attr(r= 10, t=10),
+                showactive=true,
+                x=0.11,
+                xanchor="left",
+                y=1.1,
+                yanchor="top"
+            ),
+            attr(
+                type = "buttons",
+                direction = "left",
+                buttons=[
+                    attr(
+                        args=["colorscale", "Viridis"],
+                        label="Viridis",
+                        method="restyle"
+                    ),
+                    attr(
+                        args=["colorscale", "Blues"],
+                        label="Blues",
+                        method="restyle"
+                    ),
+                    attr(
+                        args=["colorscale", "Greens"],
+                        label="Greens",
+                        method="restyle"
+                    ),
+                ],
+                pad=attr(r= 10, t=10),
+                showactive=true,
+                x=0.11,
+                xanchor="left",
+                y=0.98,
+                yanchor="top"
+            )
+        ]
+    )
+
+    # add text
+    relayout!(p,
+        annotations=[
+            attr(text="Graph type:", showarrow=false,
+                        x=0, xref="paper", y=1.08, yref="paper", align="left"),
+            attr(text="Color:", showarrow=false,
+                        x=0, xref="paper", y=0.98, yref="paper", align="left")
+        ]
+    )
+    display(p)
+end
+
 # Read data from a csv
 df = CSV.File(
     HTTP.get("https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv").body
@@ -161,4 +232,7 @@ trace2 = scatter(x=x_path, y=y_path, z=z_path,
                     mode="lines+markers")
 
 
-plot([trace1, trace2], layout)
+pathplot = plot([trace1, trace2], layout)
+display(pathplot)
+
+button_plot()
