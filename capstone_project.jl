@@ -157,7 +157,7 @@ function button_plot()
             attr(text="Graph type:", showarrow=false,
                         x=0, xref="paper", y=1.08, yref="paper", align="left"),
             attr(text="Color:", showarrow=false,
-                        x=0, xref="paper", y=0.98, yref="paper", align="left")
+                        x=0, xref="paper", y=0.96, yref="paper", align="left")
         ]
     )
     display(p)
