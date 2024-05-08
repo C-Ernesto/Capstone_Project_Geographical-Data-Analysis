@@ -1,12 +1,41 @@
 using PlotlyJS, CSV, HTTP, DataFrames, Statistics
+import Base.Threads: @threads
 
 function summaryStatistics(myVector::Vector{Float64})
-    mean_elevation = mean(myVector)
-    median_elevation = median(myVector)
-    std_deviation = std(myVector)
-    min_elevation = minimum(myVector)
-    max_elevation = maximum(myVector)
-    q1, q2, q3 = quantile(myVector, [0.25, 0.5, 0.75])
+    # Define variables to store results
+    mean_elevation, median_elevation, std_deviation, min_elevation, max_elevation = 0.0, 0.0, 0.0, 0.0, 0.0
+    q1, q2, q3 = 0.0, 0.0, 0.0
+
+    # Parallelize computation within a loop
+    @threads for i in 1:8
+        thread_mean = mean(myVector)
+        thread_median = median(myVector)
+        thread_std = std(myVector)
+        thread_min = minimum(myVector)
+        thread_max = maximum(myVector)
+        thread_q1, thread_q2, thread_q3 = quantile(myVector, [0.25, 0.5, 0.75])
+
+        # Combine results from each thread
+        mean_elevation += thread_mean
+        median_elevation += thread_median
+        std_deviation += thread_std
+        min_elevation += thread_min
+        max_elevation += thread_max
+        q1 += thread_q1
+        q2 += thread_q2
+        q3 += thread_q3
+    end
+
+    # Divide by the number of threads to get the final result
+    num_threads = 8
+    mean_elevation /= num_threads
+    median_elevation /= num_threads
+    std_deviation /= num_threads
+    min_elevation /= num_threads
+    max_elevation /= num_threads
+    q1 /= num_threads
+    q2 /= num_threads
+    q3 /= num_threads
 
     println("----- Descriptive Analysis -----")
     println("Mean: ", mean_elevation)
