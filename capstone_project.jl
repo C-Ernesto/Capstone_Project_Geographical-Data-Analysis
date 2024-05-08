@@ -116,7 +116,7 @@ function button_plot()
                 ],
                 pad=attr(r= 10, t=10),
                 showactive=true,
-                x=0.11,
+                x=0.31,
                 xanchor="left",
                 y=1.1,
                 yanchor="top"
@@ -143,7 +143,7 @@ function button_plot()
                 ],
                 pad=attr(r= 10, t=10),
                 showactive=true,
-                x=0.11,
+                x=0.31,
                 xanchor="left",
                 y=0.98,
                 yanchor="top"
@@ -155,9 +155,9 @@ function button_plot()
     relayout!(p,
         annotations=[
             attr(text="Graph type:", showarrow=false,
-                        x=0, xref="paper", y=1.08, yref="paper", align="left"),
+                        x=0.1, xref="paper", y=1.08, yref="paper", align="left"),
             attr(text="Color:", showarrow=false,
-                        x=0, xref="paper", y=0.96, yref="paper", align="left")
+                        x=0.1, xref="paper", y=0.96, yref="paper", align="left")
         ]
     )
     display(p)
