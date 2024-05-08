@@ -1,7 +1,6 @@
 using PlotlyJS, CSV, HTTP, DataFrames, Statistics
 
-# TODO Find outliers
-function summaryStatistics(myVector)
+function summaryStatistics(myVector::Vector{Float64})
     mean_elevation = mean(myVector)
     median_elevation = median(myVector)
     std_deviation = std(myVector)
@@ -20,7 +19,7 @@ function summaryStatistics(myVector)
     println("Quartile 3: ", q3)
 end
 
-function create_histogram(z_data_vector)
+function create_histogram(z_data_vector::Vector{Float64})
     z_data_histogram = plot(
         histogram(
             x = z_data_vector,
@@ -38,7 +37,7 @@ function create_histogram(z_data_vector)
     display(z_data_histogram)
 end
 
-function create_boxPlot(z_data_vector)
+function create_boxPlot(z_data_vector::Vector{Float64})
     z_data_boxplot = plot(
         box(
             y=z_data_vector, 
@@ -56,7 +55,7 @@ function create_boxPlot(z_data_vector)
 end
 
 # function to make path
-function generate_random_path(A, B; grid_size=(25, 25), weight_factor=0.6)
+function generate_random_path(A::Tuple{Int, Int}, B::Tuple{Int, Int}; grid_size::Tuple{Int, Int}=(25, 25), weight_factor::Float64=0.6)
     x_coords = [A[1]]
     y_coords = [A[2]]
     current_position = A
