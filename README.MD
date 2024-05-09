@@ -30,6 +30,6 @@ To replicate the analysis and explore the code:
 - HTTP.jl: [Documentation](https://github.com/JuliaWeb/HTTP.jl)
 - DataFrames.jl: [Documentation](https://github.com/JuliaData/DataFrames.jl)
 - Statistics.jl: [Documentation](https://github.com/JuliaStats/Statistics.jl)
--
+- Dash.jl: [Documentation](https://github.com/plotly/dash.jl)
 
 Install the required Julia packages using the Julia package manager (`Pkg`) before running the program
