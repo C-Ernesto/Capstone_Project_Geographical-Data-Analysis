@@ -13,8 +13,8 @@ The primary goals of this capstone project are as follows:
 Julia is a multi paradigm language with various features, below is a list of a few used for this project:
 1. Multidimensional arrays
 2. Loops (while and for loops)
-3. Parameter passing and return values
-4. Default parameters
+3. Parallelism/Multithreading
+4. JIT compiler optimization
 5. Piping
 
 
